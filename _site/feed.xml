@@ -3,11 +3,87 @@
   <channel>
     <title>二胖的窝</title>
     <description>一只程序猿和一只金融狗写字的地方，有关于编程，金融，数据，学习，工作，生活，有关于我，也有关于你~</description>
-    <link>http://www.yangxuanxc.com/</link>
-    <atom:link href="http://www.yangxuanxc.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 14 Apr 2018 14:03:55 +0800</pubDate>
-    <lastBuildDate>Sat, 14 Apr 2018 14:03:55 +0800</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sat, 14 Apr 2018 16:38:10 +0800</pubDate>
+    <lastBuildDate>Sat, 14 Apr 2018 16:38:10 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>一行python代码实现一个Http服务器，告别文件传输烦恼</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;如果你有一个文件需要在两台linux服务器上进行传输你会怎么办？&lt;/p&gt;
+
+  &lt;p&gt;如果你需要将linux服务器上的文件传给不会编程的产品经理，你又会怎么办？&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;问题引入&quot;&gt;问题引入&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/2018-04/python_http_server/1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;不知道大家有没有遇到过这样的问题：在实际的开发过程中，很多时候我们都不直接在本机上进行开发，一般都是在远程服务器上开发运行程序。比如二胖在实际开发中就会使用到很多台服务器，简单来说就是我有一台笔记本电脑，通过ssh连接着很多台服务器[如上图所示]，我需要经常在不同的服务器上进行开发，所以很多时候就会遇到需要在不同的计算机之间传输文件的情景。可以归纳为以下几个情景：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;个人电脑和个人电脑之间传递文件。&lt;/li&gt;
+  &lt;li&gt;服务器之间进行文件传递。&lt;/li&gt;
+  &lt;li&gt;服务器与个人电脑（笔记本）之间进行文件传递。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;解决办法&quot;&gt;解决办法？&lt;/h2&gt;
+
+&lt;p&gt;我们先来说说第一点，个人电脑和个人电脑之间是如何传递文件的。个人电脑的操作系统基本都是图形界面的操作系统，比如Windows操作系统和MacOs操作系统，最简单的办法呢就是打开电脑QQ或者电脑微信进行传递即可，是不是感觉二胖在说废话啊？嘿嘿，我感觉也是的，不过为了让文章更加完整，二胖还是提及一下。其实很多公司内部都有自己的即时聊天系统软件，一般不会用QQ和微信等第三方软件来进行数据传输，不过道里都是一样的。&lt;/p&gt;
+
+&lt;p&gt;好啦，现在来讨论第二点，服务器与服务器之间进行文件传递。我想大部分童鞋最长使用的是 scp 命令来进行文件传递的吧。&lt;/p&gt;
+
+&lt;h3 id=&quot;scp命令是什么&quot;&gt;scp命令是什么？&lt;/h3&gt;
+
+&lt;p&gt;简单来说，Linux scp命令就是用于Linux之间复制文件和目录。&lt;/p&gt;
+
+&lt;p&gt;scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的远程文件拷贝命令。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;scp [可选参数] file_source file_target&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;因为今天主要讲的不是scp命令，在这里就不过多阐述了，想要了解的童鞋可以点击下面这个视频，二胖录了个小教程讲解scp命令的用法。&lt;/p&gt;
+
+&lt;iframe style=&quot;float:middle&quot; width=&quot;650&quot; height=&quot;400&quot; src=&quot;http://player.youku.com/embed/XMzUzNjQxNTQ0OA==&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;今天的重磅是服务器与个人电脑之间的文件传递，相信很多同学这时候迫不及待的说：“直接rz，sz命令不就得了吗，至于那么麻烦吗？”。确实，sz/rz命令是linux服务器与ssh客户端进行文件的交互的命令，也就是上传和下载文件到服务器和本地。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sz：将选定的文件发送（send）到本地机器&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rz：运行该命令会弹出一个文件选择窗口，从本地选择文件上传到服务器(receive)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;确实，这两个命令是可以实现服务器与个人电脑之间上传下载文件的，不过有两个问题，当文件十分大的时候，对于部分电脑而言，sz/rz就会失败。还有一个问题就是，我们需要把文件传递给其他人，而不是从服务器上下载文件到本地，这该怎么解决？&lt;/p&gt;
+
+&lt;p&gt;这两个命令也不细讲，对linux命令行不太熟悉的童鞋可以关注我，之后我会录制linux系统基本使用的教程，到时候大家可以详细了解。现在我们继续了解第三种情况下，怎么用一行代码来搭建一个http服务器实现文件传输。&lt;/p&gt;
+
+&lt;p&gt;Python2：&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;python -m SimpleHTTPServer prot&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Python3：&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;python3 -m http.server prot&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;下面就录制一个视频给大家讲讲。当然http服务如果只用来传文件就大材小用了，还可以用来作为一个web 服务器。&lt;/p&gt;
+
+&lt;iframe style=&quot;float:middle&quot; width=&quot;650&quot; height=&quot;400&quot; src=&quot;http://player.youku.com/embed/XMzUzNjQxNTQ0OA==&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;用一行命令就运行了这个http server了，赶快来制作你的第一个网站吧。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/2018-04/python_http_server/2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;完&quot;&gt;完～&lt;/h2&gt;
+
+</description>
+        <pubDate>Thu, 12 Apr 2018 22:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/04/12/Python-Http-Server/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/04/12/Python-Http-Server/</guid>
+        
+        <category>Python小教程</category>
+        
+        
+      </item>
     
       <item>
         <title>Hello World!</title>
@@ -21,67 +97,10 @@
 
 &lt;p&gt;&lt;a href=&quot;#build&quot;&gt;跳过废话，直接看技术实现 &lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;2015 年，Hux 总算有个地方可以好好写点东西了。&lt;/p&gt;
-
-&lt;p&gt;作为一个程序员， Blog 这种轮子要是挂在大众博客程序上就太没意思了。一是觉得大部分 Blog 服务都太丑，二是觉得不能随便定制不好玩。之前因为太懒没有折腾，结果就一直连个写 Blog 的地儿都没有。&lt;/p&gt;
-
-&lt;p&gt;在玩了一段时间知乎之后，答题的快感又激起了我开博客的冲动。之前的&lt;a href=&quot;http://huangxuan.me/portfolio&quot;&gt;个人网站&lt;/a&gt;是作品集形式的（现在集成进来了），并不适合用来写博文，一不做二不休，花一天搞一个吧！&lt;/p&gt;
-
-&lt;p id=&quot;build&quot;&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;正文&quot;&gt;正文&lt;/h2&gt;
-
-&lt;p&gt;接下来说说搭建这个博客的技术细节。&lt;/p&gt;
-
-&lt;p&gt;正好之前就有关注过 &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt; + &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; 快速 Building Blog 的技术方案，非常轻松时尚。&lt;/p&gt;
-
-&lt;p&gt;其优点非常明显：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Markdown&lt;/strong&gt; 带来的优雅写作体验&lt;/li&gt;
-  &lt;li&gt;非常熟悉的 Git workflow ，&lt;strong&gt;Git Commit 即 Blog Post&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;利用 GitHub Pages 的域名和免费无限空间，不用自己折腾主机
-    &lt;ul&gt;
-      &lt;li&gt;如果需要自定义域名，也只需要简单改改 DNS 加个 CNAME 就好了&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Jekyll 的自定制非常容易，基本就是个模版引擎&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;本来觉得最大的缺点可能是 GitHub 在国内访问起来太慢，所以第二天一起床就到 GitCafe(Chinese GitHub Copy，现在被 Coding 收购了) 迁移了一个&lt;a href=&quot;http://huxpro.coding.me&quot;&gt;镜像&lt;/a&gt;出来，结果还是巨慢。&lt;/p&gt;
-
-&lt;p&gt;哥哥可是个前端好嘛！ 果断开 Chrome DevTool 查了下网络请求，原来是 &lt;strong&gt;pending 在了 Google Fonts&lt;/strong&gt; 上，页面渲染一直被阻塞到请求超时为止，难怪这么慢。&lt;br /&gt;
-忍痛割爱，只好把 Web Fonts 去了（反正超时看到的也只能是 fallback ），果然一下就正常了，而且 GitHub 和 GitCafe 对比并没有感受到明显的速度差异，虽然 github 的 ping 值明显要高一些，达到了 300ms，于是用 DNSPOD 优化了一下速度。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;配置的过程中也没遇到什么坑，基本就是 Git 的流程，相当顺手&lt;/p&gt;
-
-&lt;p&gt;大的 Jekyll 主题上直接 fork 了 Clean Blog（这个主题也相当有名，就不多赘述了。唯一的缺点大概就是没有标签支持，于是我给它补上了。）&lt;/p&gt;
-
-&lt;p&gt;本地调试环境需要 &lt;code class=&quot;highlighter-rouge&quot;&gt;gem install jekyll&lt;/code&gt;，结果 rubygem 的源居然被墙了……后来手动改成了我大淘宝的镜像源才成功&lt;/p&gt;
-
-&lt;p&gt;Theme 的 CSS 是基于 Bootstrap 定制的，看得不爽的地方直接在 Less 里改就好了（平时更习惯 SCSS 些），&lt;strong&gt;不过其实我一直觉得 Bootstrap 在移动端的体验做得相当一般，比我在淘宝参与的团队 CSS 框架差多了……&lt;/strong&gt;所以为了体验，也补了不少 CSS 进去&lt;/p&gt;
-
-&lt;p&gt;最后就进入了耗时反而最长的&lt;strong&gt;做图、写字&lt;/strong&gt;阶段，也算是进入了&lt;strong&gt;写博客&lt;/strong&gt;的正轨，因为是类似 Hack Day 的方式去搭这个站的，所以折腾折腾着大半夜就过去了。&lt;/p&gt;
-
-&lt;p&gt;第二天考虑中文字体的渲染，fork 了 &lt;a href=&quot;http://www.typeisbeautiful.com/&quot;&gt;Type is Beautiful&lt;/a&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;font&lt;/code&gt; CSS，调整了字号，适配了 Win 的渣渲染，中英文混排效果好多了。&lt;/p&gt;
-
-&lt;h2 id=&quot;后记&quot;&gt;后记&lt;/h2&gt;
-
-&lt;p&gt;回顾这个博客的诞生，纯粹是出于个人兴趣。在知乎相关问题上回答并获得一定的 star 后，我决定把这个博客主题当作一个小小的开源项目来维护。&lt;/p&gt;
-
-&lt;p&gt;在经历 v1.0 - v1.5 的蜕变后，这个博客主题愈发完整，不但增加了诸多 UI 层的优化（opinionated）；在代码层面，更加丰富的配置项也使得这个主题拥有了更好的灵活性与可拓展性。而作为一个开源项目，我也积极的为其完善文档与解决 issue。&lt;/p&gt;
-
-&lt;p&gt;如果你恰好逛到了这里，希望你也能喜欢这个博客主题。&lt;/p&gt;
-
-&lt;p&gt;—— Hux 后记于 2015.10&lt;/p&gt;
-
 </description>
         <pubDate>Mon, 02 Apr 2018 20:00:00 +0800</pubDate>
-        <link>http://www.yangxuanxc.com/2018/04/02/Hello-World/</link>
-        <guid isPermaLink="true">http://www.yangxuanxc.com/2018/04/02/Hello-World/</guid>
+        <link>http://localhost:4000/2018/04/02/Hello-World/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/04/02/Hello-World/</guid>
         
         <category>生活</category>
         
