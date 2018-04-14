@@ -21,4 +21,14 @@ Hello，我是二胖，欢迎你来到我们的小窝，很高兴遇见你。现
 
 好啦，就介绍到这里，欢迎关注我们的微信公众号和知乎，这个网站有更新我们都会在微信公众号和知乎同步推送，扫描下方二维码关注：
 
-![erweima\_qrcode.png](quiver-image-url/DAAC01B834B24A2A655BF015350FDD58.png)
+<table>
+    <tr style="border:none">
+        <td style="border:none"><h1>微信公众号：</h1></td>
+        <td style="border:none"><h1>知乎：</h1></td>
+    </tr>
+    <tr style="border:none">
+        <td style="border:none"><img width="240" src="{{ site.baseurl }}/img/wechat_qrcode.gif" alt=""></td>
+        <td style="border:none"><img width="240" src="{{ site.baseurl }}/img/zhihu_qrcode.gif" alt=""></td>
+    </tr>
+
+</table>

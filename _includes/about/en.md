@@ -1,35 +1,24 @@
+> 一个程序🐒和一只金融🐶
+> 写字的地方
 
+Hello，我是二胖，欢迎你来到我们的小窝，很高兴遇见你。现在，就让我给你介绍一下我们的网站吧~
 
-> Yet another man.
+## 我们是谁？
 
+二胖的窝里一共有两个成员，分别是二胖和二胖并不胖。
 
-Hi, I am *@huxpro* (Huang, Xuan), a software engineer & a designer. I previously worked as Web Front-End Engineer at [Alibaba Trip](https://www.alitrip.com/); Web Front-End Infrastructure Team Lead at [Wepiao.com](https://www.crunchbase.com/organization/wepiao#/entity); And [Invited Consultant on PWA]((https://medium.com/elemefe/upgrading-ele-me-to-progressive-web-app-2a446832e509)) at [Ele.me](https://github.com/elemefe/).
+二胖———就是本程序🐒，职业是软件工程师，科班出身，目前就职于百度公司，主要从事Linux服务器C++开发，喜欢Python和数据分析，机器学习&数据挖掘入门级选手，也偶尔写一写Java和php，力推计算机专业课。周末常宅在家中，不玩游戏不看小说，最爱做菜，实打实的吃货一枚。长活跃于[知乎](https://www.zhihu.com/people/dcapi)，运营公众号[大数据前沿](https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzAwNzAzNTMwMg==)。
 
-I studied Digital Media Art and graduated from [Communication University of China](https://en.wikipedia.org/wiki/Communication_University_of_China) by 2016, and am studying Computer Science at [Rochester Institute of Technology](https://en.wikipedia.org/wiki/Rochester_Institute_of_Technology) from 2017.
+二胖并不胖———一只会写代码的金融🐶，研究生就读于中华人民共和国财政部科学研究院，本科计算机专业毕业，喜欢Python，致力于将计算机思维导入在金融领域的工作中，量化入门级选手。
 
+## 为什么要建立这个网站？
 
-##### Talks
+简单来说，二胖建立这个网站的主要目的是为了分享。分享的内容主要有关于编程、计算机、互联网、学习经验与方法、量化等。**为什么二胖热衷于分享呢？**说来话长，抛开一切因素，二胖最向往的职业其实是老师。我是一个期盼站在讲台上的人，但是迫于生活，我并没有如愿。不过，在互联网时代，这并不是一个不可解决的问题，互联网拉近了你我之间的距离。我可以通过互联网分享一些我学到的知识和我认为有用的经验，也可以向你请教一些你熟悉但我不太了解的知识。所以，这个网站的主题就是———分享。其实这些内容也可以通过微信公众号和知乎进行展示，可是二胖渐渐发现，在其他平台我并不能按照自己的意愿去安排文章的版面，加之这些平台有很多其他的限制，所以二胖决定自己搭建一个平台，也就有了你现在看到的这个网站。
 
-- [Upgrading to Progressive Web Apps][9] · [JSConf China Shanghai 2017](http://2017.jsconf.cn/)
-- Building Progressive Web Apps · [CSDI Guangzhou 2017](http://www.csdisummit.com/)
-- The State of Progressive Web App · GDG IO Redux Beijing 2017
-- PWA Rehashing · Baidu HQ Beijing 2017
-- [Service Worker 101][5] · GDG DevFest Beijing 2016
-- [Progressive Web Apps][4] · QCon Shanghai 2016
-- Progressive Web App in my POV · GDG IO Redux Beijing 2016
-- [CSS Still Sucks 2015][2] · 2015
-- [JavaScript Modularization Journey][1] · 2015
+## 网上教程那么多，我的分享有什么特别之处呢？
 
+不知道屏幕前的你有没有阅读过二胖写的一篇关于编程经验的文章《[这可能是我见过最好的编程指南]()》，二胖在文章中提到了，在互联网时代我们最不缺的就是各种资源，也许我们几辈子都看不完。问题就出在这里，视频教程、书籍，太多了，我们根本不知道看什么。为了学习一项技术，我们可能不得不学很多教程，读很多书，看很多重复的内容，浪费了不少时间。二胖也是这么过来的，从一个小白，摸爬滚打到现在，终于入门成为一个程序员，深知这一路是多么不易。所以，二胖最想分享的就是**学习路径**，即从小白到入门怎么最快，由浅入深地介绍自己学习编程的整个过程。看到网站右上角的导航栏了吗，有一栏叫：[**系列教程**]()，二胖计划花较长的一段时间从最基础的计算机专业知识开始介绍，一直到上层应用的开发，出一整套教程。整个过程由自己录制，保证知识能有效衔接，由浅入深，希望能帮助到刚入门的新人。除了系列教程，还有一栏叫[**分类文章**]()，这里面的文章都有标签，你可以点击你感兴趣的标签来查看相应分类的文章，比如[数据分析]()、[编程经验]()或者[二胖的厨房]()。
 
+好啦，就介绍到这里，欢迎关注我们的微信公众号和知乎，这个网站有更新我们都会在微信公众号和知乎同步推送，扫描下方二维码关注：
 
-[1]: //huangxuan.me/2015/07/09/js-module-7day/
-[2]: //huangxuan.me/2015/12/28/css-sucks-2015/
-[3]: //huangxuan.me/2016/06/05/pwa-in-my-pov/
-[4]: //huangxuan.me/2016/10/20/pwa-qcon2016/
-[5]: //huangxuan.me/2016/11/20/sw-101-gdgdf/
-[6]: https://yanshuo.io/assets/player/?deck=58ac8598b123db0067292f92 "PWA Rehashing"
-[7]: https://yanshuo.io/assets/player/?deck=593ad6fbfe88c2006a0a0d6d "The State of PWA"
-[8]: https://yanshuo.io/assets/player/?deck=594d673d570c357d0698a950 "Building PWA"
-[9]: //huangxuan.me/jsconfcn2017/
-
-
+![erweima\_qrcode.png](quiver-image-url/DAAC01B834B24A2A655BF015350FDD58.png)
