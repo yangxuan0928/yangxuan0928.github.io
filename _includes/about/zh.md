@@ -23,12 +23,16 @@ Hello，我是二胖，欢迎你来到我们的小窝，很高兴遇见你。现
 
 <table>
     <tr style="border:none">
-        <td style="border:none"><h1>微信公众号：</h1></td>
-        <td style="border:none"><h1>知乎：</h1></td>
+        <h2>微信公众号：</h2>
     </tr>
     <tr style="border:none">
-        <td style="border:none"><img width="240" src="{{ site.baseurl }}/img/wechat_qrcode.gif" alt=""></td>
-        <td style="border:none"><img width="240" src="{{ site.baseurl }}/img/zhihu_qrcode.gif" alt=""></td>
+        <img width="300" src="{{ site.baseurl }}/img/wechat_qrcode.gif" alt="">
+    </tr>
+    <tr style="border:none">
+        <h2>知乎：</h2>
+    </tr>
+    <tr style="border:none">
+        <img width="300" src="{{ site.baseurl }}/img/zhihu_qrcode.gif" alt="">
     </tr>
 
 </table>
